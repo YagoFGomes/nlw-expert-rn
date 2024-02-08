@@ -8,6 +8,7 @@ export interface ProductCartProps extends ProductProps {
 interface StateProps {
     products: ProductCartProps[];
     add: (product: ProductProps) => void;
+    remove: (productId: string) => void;
 }
 
 export const useCardStore = create<StateProps>((set) => ({
@@ -15,5 +16,10 @@ export const useCardStore = create<StateProps>((set) => ({
     add: (product: ProductProps) =>
         set((state) => ({
             products: cartInMemory.add(state.products, product),
+        })),
+
+    remove: (productId: string) =>
+        set((state) => ({
+            products: cartInMemory.remove(state.products, productId),
         })),
 }));
