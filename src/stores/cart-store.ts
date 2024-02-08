@@ -13,6 +13,7 @@ interface StateProps {
     products: ProductCartProps[];
     add: (product: ProductProps) => void;
     remove: (productId: string) => void;
+    clear: () => void;
 }
 
 export const useCardStore = create(
@@ -28,6 +29,8 @@ export const useCardStore = create(
                 set((state) => ({
                     products: cartInMemory.remove(state.products, productId),
                 })),
+
+            clear: () => set(() => ({ products: [] })),
         }),
         {
             name: "nlw-expert:cart",
